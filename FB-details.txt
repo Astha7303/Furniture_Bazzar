@@ -1,0 +1,51 @@
+=> Chairs
+ => Dining chair - steel,wooden,plastic
+ => Office chair - steel,wooden,plastic
+ => Public Seating
+
+=> Sofas
+ => Single seater 
+ => Two seater
+ => 3 seater
+ => L type
+ => sofacumbed
+
+=> Bedroom set
+ => Bed
+ => Wardrobe
+ => Dressing table
+
+=> Beds
+ => Single bed
+ => Double Bed
+ => Children bed
+
+=>Mattress
+
+=> Almirahs/wardrobe
+ => single door
+ => two door
+ => three door
+ => slider
+
+=> Tables
+ => office table
+ => Reception table
+ => conference table
+ => bedside table
+ => dining table
+
+=> Temple
+ => Sag /seven/oxodised...
+
+=> Tipoi
+
+
+
+=> Other
+ => plastic cupboard
+ => Dressing table
+ => Tv unit
+ 
+=> Customize 
+
