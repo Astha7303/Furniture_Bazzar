@@ -46,12 +46,16 @@ app.get("/api/furniture", async (req, res) => {
         product = {
           id: row.id,
           name: row.name,
+          furnitureType: row.furnitureType,
           description: row.description,
           price: row.price,
           offerPrice: row.offerPrice,
           image: row.imageUrl,
           colorOptions: row.hasColorOptions,
           colors: [],
+          productHighlights: row.productHighlights
+            ? JSON.parse(row.productHighlights)
+            : null,
         };
         formatted[category].push(product);
       }
@@ -90,6 +94,7 @@ app.get("/api/product/:id", async (req, res) => {
     const product = {
       id: rows[0].id,
       name: rows[0].name,
+      furnitureType: rows[0].furnitureType,
       description: rows[0].description,
       price: rows[0].price,
       offerPrice: rows[0].offerPrice,
@@ -97,6 +102,9 @@ app.get("/api/product/:id", async (req, res) => {
       colorOptions: rows[0].hasColorOptions,
       colors: rows.map((r) => r.colorName).filter(Boolean),
       category: rows[0].category,
+      productHighlights: rows[0].productHighlights
+        ? JSON.parse(rows[0].productHighlights)
+        : null,
     };
 
     res.json(product);
@@ -129,6 +137,7 @@ app.post("/api/add-product", upload.single("image"), async (req, res) => {
     offerPrice,
     colorOption,
     colors,
+    productHighlights,
   } = req.body;
 
   const imageUrl = req.file
@@ -146,13 +155,14 @@ app.post("/api/add-product", upload.single("image"), async (req, res) => {
       .input("offerPrice", offer === "yes" ? parseInt(offerPrice) : null)
       .input("imageUrl", imageUrl) // temp
       .input("category", category)
+      .input("productHighlights", productHighlights)
       .input("hasColorOptions", colorOption === "yes" ? 1 : 0).query(`
-        INSERT INTO Products
-        (name, description, price, offerPrice, imageUrl, category, hasColorOptions)
-        OUTPUT INSERTED.id
-        VALUES
-        (@name, @description, @price, @offerPrice, @imageUrl, @category, @hasColorOptions)
-      `);
+INSERT INTO Products
+(name, description, price, offerPrice, imageUrl, category, hasColorOptions, productHighlights)
+OUTPUT INSERTED.id
+VALUES
+(@name, @description, @price, @offerPrice, @imageUrl, @category, @hasColorOptions, @productHighlights)
+`);
 
     const productId = result.recordset[0].id;
 
@@ -195,6 +205,7 @@ app.delete("/api/product/:id", async (req, res) => {
   }
 });
 
+//update item
 app.put("/api/product/:id", upload.single("image"), async (req, res) => {
   const { id } = req.params;
 
@@ -273,6 +284,56 @@ app.put("/api/product/:id", upload.single("image"), async (req, res) => {
   }
 });
 app.use("/uploads", express.static("uploads"));
+
+app.get("/api/category/:category", async (req, res) => {
+  const category = req.params.category;
+
+  try {
+    const pool = await sql.connect(config);
+
+    const result = await pool.request().input("category", category).query(`
+        SELECT p.*, c.colorName
+        FROM Products p
+        LEFT JOIN Colors c ON p.id = c.productId
+        WHERE p.category = @category
+      `);
+
+    const rows = result.recordset;
+
+    const formatted = [];
+
+    rows.forEach((row) => {
+      let product = formatted.find((p) => p.id === row.id);
+
+      if (!product) {
+        product = {
+          id: row.id,
+          name: row.name,
+          description: row.description,
+          price: row.price,
+          offerPrice: row.offerPrice,
+          image: row.imageUrl,
+          colorOptions: row.hasColorOptions,
+          colors: [],
+
+          productHighlights: row.productHighlights
+            ? JSON.parse(row.productHighlights)
+            : null,
+        };
+
+        formatted.push(product);
+      }
+
+      if (row.colorName) {
+        product.colors.push(row.colorName);
+      }
+    });
+
+    res.json(formatted);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
 
 app.listen(5000, () => {
   console.log("Server running on port 5000");

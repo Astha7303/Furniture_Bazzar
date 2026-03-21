@@ -271,7 +271,7 @@ function AdminDashboard() {
               onClick={handleSubmit}
               sx={{ height: "50px", fontWeight: "600" }}
             >
-              Add Product
+              {id ? "Update Product" : "Add Product"}
             </Button>
           </Grid>
         </Grid>

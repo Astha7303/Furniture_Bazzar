@@ -9,6 +9,12 @@ import "./App.css";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import ChairsPage from "./SubPages/Chairs";
+import SofasPage from "./SubPages/Sofas";
+import CupboardsPage from "./SubPages/Cupboards";
+import BedsPage from "./SubPages/Beds";
+import TablesPage from "./SubPages/Tables";
+import TemplesPage from "./SubPages/Temples";
 
 function App() {
   return (
@@ -29,6 +35,12 @@ function App() {
           }
         />
         <Route path="*" element={<Home />} />
+        <Route path="/chairs" element={<ChairsPage />} />
+        <Route path="/sofas" element={<SofasPage />} />
+        <Route path="/cupboards" element={<CupboardsPage />} />
+        <Route path="/beds" element={<BedsPage />} />
+        <Route path="/tables" element={<TablesPage />} />
+        <Route path="/temples" element={<TemplesPage />} />
       </Routes>
 
       <Footer />
