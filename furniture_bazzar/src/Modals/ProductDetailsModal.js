@@ -1,152 +1,124 @@
-import {
-  Dialog,
-  DialogContent,
-  Typography,
-  Box,
-  Grid,
-  Button,
-} from "@mui/material";
+import "./Modal.css";
 import { useNavigate } from "react-router-dom";
 
 function ProductDetailsModal({ open, handleClose, product }) {
   const navigate = useNavigate();
-  if (!product) return null;
+
+  if (!open || !product) return null;
 
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-      <DialogContent>
-        <Grid container spacing={3}>
-          {/* LEFT IMAGE SECTION */}
+    <div className="modal-overlay">
+      <div className="modal large-modal">
+        <button className="close-btn" onClick={handleClose}>
+          ✕
+        </button>
 
-          <Grid item xs={12} md={6} size={6}>
-            <Box>
-              <img
-                src={product.image}
-                alt={product.name}
-                style={{
-                  width: "100%",
-                  borderRadius: "8px",
-                  height: "400px",
-                }}
-              />
-            </Box>
-          </Grid>
+        <div className="product-modal-grid">
+          {/* image */}
 
-          {/* RIGHT DETAILS SECTION */}
+          <div>
+            <img
+              src={product.image}
+              alt={product.name}
+              className="modal-image"
+            />
+          </div>
 
-          <Grid item xs={12} md={6}>
-            <Typography variant="h5" fontWeight="600">
-              {product.name}
-            </Typography>
+          {/* details */}
 
-            <Typography color="text.secondary" sx={{ mt: 1 }}>
-              {product.description}
-            </Typography>
+          <div>
+            <h2>{product.name}</h2>
 
-            {/* PRICE */}
+            <p className="modal-desc">{product.description}</p>
 
-            <Box mt={2}>
+            {/* price */}
+
+            <div className="modal-price">
               {product.offerPrice ? (
                 <>
-                  <Typography
-                    sx={{
-                      textDecoration: "line-through",
-                      color: "gray",
-                    }}
-                  >
-                    ₹{product.price}
-                  </Typography>
+                  <span className="old-price">₹{product.price}</span>
 
-                  <Typography variant="h5" fontWeight="600" color="green">
-                    ₹{product.offerPrice}
-                  </Typography>
+                  <span className="offer-price">₹{product.offerPrice}</span>
                 </>
               ) : (
-                <Typography variant="h5" fontWeight="600">
-                  ₹{product.price}
-                </Typography>
+                <span className="price">₹{product.price}</span>
               )}
-            </Box>
+            </div>
 
-            {/* COLORS */}
+            {/* colors */}
 
             {product.colorOptions && product.colors?.length > 0 && (
-              <Box mt={2}>
-                <Typography fontWeight="500">Available Colors</Typography>
+              <div className="modal-section">
+                <strong>Available Colors</strong>
 
-                <Box display="flex" gap={1} mt={1}>
+                <div className="colors">
                   {product.colors.map((color, i) => (
-                    <Box
+                    <span
                       key={i}
-                      sx={{
-                        width: 25,
-                        height: 25,
+                      className="color"
+                      style={{
                         backgroundColor: color.toLowerCase(),
-                        borderRadius: "4px",
-                        border: "1px solid #ccc",
                       }}
                     />
                   ))}
-                </Box>
-              </Box>
+                </div>
+              </div>
             )}
 
-            {/* PRODUCT DETAILS */}
+            {/* highlights */}
 
-            <Box mt={3}>
-              <Typography fontWeight="600">Product Highlights</Typography>
+            {product.productHighlights && (
+              <div className="modal-section">
+                <strong>Product Highlights</strong>
 
-              <Box mt={1}>
-                {product.productHighlights && (
-                  <>
-                    <Typography variant="body2">
-                      Warranty:{" "}
-                      {product.productHighlights.warrantyInMonths || " - "}{" "}
-                      Months
-                    </Typography>
+                <ul className="highlight-list">
+                  <li>
+                    Warranty:
+                    {product.productHighlights.warrantyInMonths || "-"}
+                    months
+                  </li>
 
-                    <Typography variant="body2">
-                      Length: {product.productHighlights.length || " - "}
-                    </Typography>
+                  <li>
+                    Length:
+                    {product.productHighlights.length || "-"}
+                  </li>
 
-                    <Typography variant="body2">
-                      Material types:{" "}
-                      {product.productHighlights.materialTypes.join(", ") ||
-                        "-"}
-                    </Typography>
+                  <li>
+                    Material:
+                    {product.productHighlights.materialTypes?.join(", ") || "-"}
+                  </li>
 
-                    <Typography variant="body2">
-                      Height: {product.productHighlights.height || "-"}
-                    </Typography>
+                  <li>
+                    Height:
+                    {product.productHighlights.height || "-"}
+                  </li>
 
-                    <Typography variant="body2">
-                      Weight: {product.productHighlights.weight || "-"}
-                    </Typography>
-                  </>
-                )}
-              </Box>
-            </Box>
+                  <li>
+                    Weight:
+                    {product.productHighlights.weight || "-"}
+                  </li>
+                </ul>
+              </div>
+            )}
 
-            {/* BUTTONS */}
+            {/* buttons */}
 
-            <Box mt={4} display="flex" gap={2}>
-              <Button variant="contained" size="large">
-                Book Now
-              </Button>
-              <Button
-                variant="outlined"
-                size="large"
+            <div className="modal-actions">
+              <button className="book-now">Book Now</button>
+
+              <button
+                className="view-more"
                 onClick={() =>
                   navigate(`/${product.furnitureType.toLowerCase()}`)
                 }
               >
                 View More
-              </Button>
-            </Box>
-          </Grid>
-        </Grid>
-      </DialogContent>
-    </Dialog>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Home from "./pages/Home/Home";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import BookNow from "./pages/BookNow";
 import "./App.css";
-import AdminLogin from "./pages/AdminLogin";
+import AdminLogin from "./pages/AdminLogin/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ChairsPage from "./SubPages/Chairs";

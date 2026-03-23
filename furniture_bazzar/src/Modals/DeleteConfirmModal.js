@@ -1,32 +1,45 @@
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Typography,
-} from "@mui/material";
+import "./Modal.css";
 
 function DeleteConfirmModal({ open, onClose, onConfirm }) {
+
+  if (!open) return null;
+
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
-      <DialogTitle>Confirm Delete</DialogTitle>
 
-      <DialogContent>
-        <Typography>Are you sure you want to delete this item?</Typography>
-      </DialogContent>
+    <div className="modal-overlay">
 
-      <DialogActions>
-        <Button onClick={onClose} variant="outlined">
-          Cancel
-        </Button>
+      <div className="modal small-modal">
 
-        <Button onClick={onConfirm} color="error" variant="contained">
-          Yes, Delete
-        </Button>
-      </DialogActions>
-    </Dialog>
+        <h3>Confirm Delete</h3>
+
+        <p>
+          Are you sure you want to delete this item?
+        </p>
+
+        <div className="modal-actions">
+
+          <button
+            className="cancle-btn"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+
+          <button
+            className="view-more"
+            onClick={onConfirm}
+          >
+            Yes, Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
   );
+
 }
 
 export default DeleteConfirmModal;

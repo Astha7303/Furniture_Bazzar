@@ -143,45 +143,58 @@ app.post("/api/add-product", upload.single("image"), async (req, res) => {
   const imageUrl = req.file
     ? `http://localhost:5000/uploads/${req.file.filename}`
     : null;
+
   try {
     const pool = await sql.connect(config);
 
-    // 1. Insert product
+    // insert product
     const result = await pool
       .request()
       .input("name", name)
       .input("description", description)
       .input("price", parseInt(price))
       .input("offerPrice", offer === "yes" ? parseInt(offerPrice) : null)
-      .input("imageUrl", imageUrl) // temp
+      .input("imageUrl", imageUrl)
       .input("category", category)
       .input("productHighlights", productHighlights)
       .input("hasColorOptions", colorOption === "yes" ? 1 : 0).query(`
-INSERT INTO Products
-(name, description, price, offerPrice, imageUrl, category, hasColorOptions, productHighlights)
-OUTPUT INSERTED.id
-VALUES
-(@name, @description, @price, @offerPrice, @imageUrl, @category, @hasColorOptions, @productHighlights)
-`);
+        INSERT INTO Products
+        (name, description, price, offerPrice, imageUrl, category, hasColorOptions, productHighlights)
+
+        OUTPUT INSERTED.id
+
+        VALUES
+        (@name, @description, @price, @offerPrice, @imageUrl, @category, @hasColorOptions, @productHighlights)
+      `);
 
     const productId = result.recordset[0].id;
 
-    // 2. Insert colors (if any)
-    if (colorOption === "yes" && colors.length > 0) {
-      for (let color of colors) {
-        await pool
-          .request()
-          .input("productId", productId)
-          .input("colorName", color).query(`
-            INSERT INTO Colors (productId, colorName)
-            VALUES (@productId, @colorName)
-          `);
+    // fix colors parsing
+    let colorArray = [];
+
+    if (colorOption === "yes") {
+      if (typeof colors === "string") {
+        colorArray = JSON.parse(colors);
+      } else if (Array.isArray(colors)) {
+        colorArray = colors;
       }
+    }
+
+    // insert colors
+    for (let color of colorArray) {
+      await pool
+        .request()
+        .input("productId", productId)
+        .input("colorName", color).query(`
+          INSERT INTO Colors (productId, colorName)
+          VALUES (@productId, @colorName)
+        `);
     }
 
     res.send("Product added successfully");
   } catch (err) {
     console.log(err);
+
     res.status(500).send(err.message);
   }
 });
@@ -223,14 +236,13 @@ app.put("/api/product/:id", upload.single("image"), async (req, res) => {
   try {
     const pool = await sql.connect(config);
 
-    // image (optional update)
     let imageUrl = null;
 
     if (req.file) {
       imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
     }
 
-    // update main product
+    // update product
     await pool
       .request()
       .input("id", id)
@@ -241,8 +253,8 @@ app.put("/api/product/:id", upload.single("image"), async (req, res) => {
       .input("category", category)
       .input("hasColorOptions", colorOption === "yes" ? 1 : 0)
       .input("imageUrl", imageUrl).query(`
-
         UPDATE Products
+
         SET
           name = @name,
           description = @description,
@@ -253,36 +265,42 @@ app.put("/api/product/:id", upload.single("image"), async (req, res) => {
           imageUrl = COALESCE(@imageUrl, imageUrl)
 
         WHERE id = @id
-
       `);
 
-    // delete previous colors
+    // delete old colors
     await pool.request().input("id", id).query(`
         DELETE FROM Colors
         WHERE productId = @id
       `);
 
-    // insert updated colors
-    if (colorOption === "yes" && colors) {
-      const colorArray = JSON.parse(colors);
+    // fix colors parsing
+    let colorArray = [];
 
-      for (let color of colorArray) {
-        await pool.request().input("productId", id).input("colorName", color)
-          .query(`
-
-            INSERT INTO Colors (productId, colorName)
-            VALUES (@productId, @colorName)
-
-          `);
+    if (colorOption === "yes") {
+      if (typeof colors === "string") {
+        colorArray = JSON.parse(colors);
+      } else if (Array.isArray(colors)) {
+        colorArray = colors;
       }
+    }
+
+    // insert colors
+    for (let color of colorArray) {
+      await pool.request().input("productId", id).input("colorName", color)
+        .query(`
+          INSERT INTO Colors (productId, colorName)
+          VALUES (@productId, @colorName)
+        `);
     }
 
     res.send("Updated successfully");
   } catch (err) {
     console.log(err);
+
     res.status(500).send(err.message);
   }
 });
+
 app.use("/uploads", express.static("uploads"));
 
 app.get("/api/category/:category", async (req, res) => {
