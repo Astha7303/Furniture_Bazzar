@@ -15,6 +15,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ProductDetailsModal from "../Modals/ProductDetailsModal";
+import DeleteConfirmModal from "../Modals/DeleteConfirmModal";
 
 function Home() {
   const location = useLocation();
@@ -38,8 +39,9 @@ function Home() {
   const [tables, setTables] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-
   const navigate = useNavigate();
+  const [deleteId, setDeleteId] = useState(null);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const getdata = async () => {
     try {
@@ -61,12 +63,13 @@ function Home() {
     getdata();
   }, []);
 
-  const handleDelete = async (id) => {
+  const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/product/${id}`);
+      await axios.delete(`${API_BASE}/api/product/${deleteId}`);
 
-      // remove from UI instantly
-      setChairs((prev) => prev.filter((item) => item.id !== id));
+      setChairs((prev) => prev.filter((item) => item.id !== deleteId));
+
+      setOpenDeleteModal(false);
     } catch (err) {
       console.log(err);
     }
@@ -140,7 +143,8 @@ function Home() {
                     color="error"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDelete(item.id);
+                      setDeleteId(item.id);
+                      setOpenDeleteModal(true);
                     }}
                   >
                     <DeleteIcon fontSize="small" />
@@ -285,7 +289,8 @@ function Home() {
                     color="error"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDelete(item.id);
+                      setDeleteId(item.id);
+                      setOpenDeleteModal(true);
                     }}
                   >
                     <DeleteIcon fontSize="small" />
@@ -430,7 +435,8 @@ function Home() {
                     color="error"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDelete(item.id);
+                      setDeleteId(item.id);
+                      setOpenDeleteModal(true);
                     }}
                   >
                     <DeleteIcon fontSize="small" />
@@ -575,7 +581,8 @@ function Home() {
                     color="error"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDelete(item.id);
+                      setDeleteId(item.id);
+                      setOpenDeleteModal(true);
                     }}
                   >
                     <DeleteIcon fontSize="small" />
@@ -720,7 +727,8 @@ function Home() {
                     color="error"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDelete(item.id);
+                      setDeleteId(item.id);
+                      setOpenDeleteModal(true);
                     }}
                   >
                     <DeleteIcon fontSize="small" />
@@ -865,7 +873,8 @@ function Home() {
                     color="error"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleDelete(item.id);
+                      setDeleteId(item.id);
+                      setOpenDeleteModal(true);
                     }}
                   >
                     <DeleteIcon fontSize="small" />
@@ -947,6 +956,12 @@ function Home() {
           ))}
         </div>
       </section>
+
+      <DeleteConfirmModal
+        open={openDeleteModal}
+        onClose={() => setOpenDeleteModal(false)}
+        onConfirm={confirmDelete}
+      />
 
       {/* Product Popup  */}
       <ProductDetailsModal
