@@ -8,7 +8,7 @@ import sofa from "../../images/sofa.webp";
 import sidetable from "../../images/side-table.jpg";
 import balconychair from "../../images/balcony-chair.jpg";
 import mattress from "../../images/mattress.jpg";
-import studytable from "../../images/study-table.webp";
+import workdesks from "../../images/workdesks.webp";
 import coffeetable from "../../images/coffeetable.webp";
 import dressingtable from "../../images/dressingtable.jpg";
 import bookshelfbedroom from "../../images/bookshelfbedroom.jpg";
@@ -60,7 +60,7 @@ function BedroomFurniture() {
 
     {
       name: "Work Desk",
-      img: studytable,
+      img: workdesks,
       link: "/workdesks",
     },
 

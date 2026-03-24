@@ -25,6 +25,20 @@ import DressingTablesPage from "./SubPages/DressingTables";
 import CoffeeTablesPage from "./SubPages/CoffeeTable";
 import BookShelfPage from "./SubPages/Bookshelfs";
 import BalconyChairsPage from "./SubPages/BalconyChairs";
+import KitchenFurniture from "./Interiors/Kitchen/KitchenFurniture";
+import DiningTablesPage from "./SubPages/DiningTables";
+import KitchenCabinetsPage from "./SubPages/KitchenCabinet";
+import HighChairsPage from "./SubPages/HighChairs";
+import SideBoardsPage from "./SubPages/SideBoard";
+import LibraryFurniture from "./Interiors/Library/LibraryFurniture";
+import SingleStudyChairsPage from "./SubPages/SingleStudyChairs";
+import StudyCabinetsPage from "./SubPages/StudyCabinetsPage";
+import LivingroomFurniture from "./Interiors/Livingroom/LivingroomFurniture";
+import RockingChairsPage from "./SubPages/RockingChairs";
+import TvCabinetsPage from "./SubPages/TvCabinets";
+import DisplayCabinetsPage from "./SubPages/DisplayCabinets";
+import OfficeFurniture from "./Interiors/Office/OfficeFurniture";
+import StudyroomFurniture from "./Interiors/Studyroom/StudyroomFurniture";
 
 function App() {
   return (
@@ -62,8 +76,22 @@ function App() {
         <Route path="/workdesks" element={<WorkDeskPage />} />
         <Route path="/balconychairs" element={<BalconyChairsPage />} />
         <Route path="/mattress" element={<MattressPage />} />
+        <Route path="/diningtable" element={<DiningTablesPage />} />
+        <Route path="/kitchencabinet" element={<KitchenCabinetsPage />} />
+        <Route path="/highchair" element={<HighChairsPage />} />
+        <Route path="/sideboard" element={<SideBoardsPage />} />
+        <Route path="/singlestudychair" element={<SingleStudyChairsPage />} />
+        <Route path="/studycabinets" element={<StudyCabinetsPage />} />
+        <Route path="/rockingchairs" element={<RockingChairsPage />} />
+        <Route path="/tvcabinets" element={<TvCabinetsPage />} />
+        <Route path="/displaycabinet" element={<DisplayCabinetsPage />} />
 
         <Route path="/bedroomfurniture" element={<BedroomFurniture />} />
+        <Route path="/kitchenfurniture" element={<KitchenFurniture />} />
+        <Route path="/libraryfurniture" element={<LibraryFurniture />} />
+        <Route path="/livingroomfurniture" element={<LivingroomFurniture />} />
+        <Route path="/officefurniture" element={<OfficeFurniture />} />
+        <Route path="/studyroomfurniture" element={<StudyroomFurniture />} />
       </Routes>
 
       <Footer />

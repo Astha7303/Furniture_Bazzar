@@ -10,7 +10,7 @@ import cupboard from "../../images/cupboard.jpg";
 import library from "../../images/library.jpg";
 import kitchen from "../../images/kitchen.jpg";
 import livingroom from "../../images/livingroom.jpg";
-import dining from "../../images/diningroom.jpg";
+import studyroom from "../../images/studyroom.webp";
 import office from "../../images/office.jpg";
 import bedroom from "../../images/bedroom.jpg";
 
@@ -65,26 +65,31 @@ function OurProducts() {
     {
       name: "Kitchen Furniture",
       img: kitchen,
+      link: "/kitchenfurniture",
+    },
+    
+    {
+      name: "Library Furniture",
+      img: library,
+      link: "/libraryfurniture",
     },
 
     {
       name: "Living Room Furniture",
       img: livingroom,
+      link: "/livingroomfurniture",
     },
 
     {
       name: "Office Furniture",
       img: office,
+      link: "/officefurniture",
     },
 
     {
-      name: "Library Furniture",
-      img: library,
-    },
-
-    {
-      name: "Dining Furniture",
-      img: dining,
+      name: "Study Room Furniture",
+      img: studyroom,
+      link: "/studyroomfurniture",
     },
   ];
 
