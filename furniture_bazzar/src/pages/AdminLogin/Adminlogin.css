@@ -98,6 +98,7 @@
 .form-grid select {
     padding: 10px;
     width: 100%;
+    cursor: pointer;
 }
 
 .checkbox-row {

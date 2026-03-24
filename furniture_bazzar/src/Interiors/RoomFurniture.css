@@ -1,0 +1,83 @@
+.room-page {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+/* heading */
+
+.room-hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.room-hero h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.room-hero p {
+    color: gray;
+}
+
+/* grid */
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+/* cards */
+.room-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.room-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+/* hover */
+.room-card:hover img {
+    transform: scale(1.05);
+}
+
+/* overlay */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay h3 {
+    color: white;
+    font-size: 20px;
+}
+
+/* tablet */
+@media (max-width: 1000px) {
+    .room-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* mobile */
+@media (max-width: 600px) {
+    .room-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .room-hero h1 {
+        font-size: 26px;
+    }
+
+}

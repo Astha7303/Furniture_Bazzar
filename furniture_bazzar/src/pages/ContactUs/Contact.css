@@ -1,0 +1,61 @@
+.contact-page {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.contact-page h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* layout */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* info */
+.contact-info {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.contact-item {
+    margin-top: 15px;
+}
+
+/* form */
+.contact-form {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+}
+
+.contact-form button {
+    padding: 12px;
+    background: #0f172a;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* responsive */
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}

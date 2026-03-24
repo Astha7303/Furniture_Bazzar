@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './AdminLogin/Adminlogin.css'
+import "./AdminLogin/Adminlogin.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
@@ -73,10 +73,11 @@ function AdminDashboard() {
 
     if (id) {
       await axios.put(`${API_BASE}/api/product/${id}`, data);
+      alert("Product Updated Successfully");
     } else {
       await axios.post(`${API_BASE}/api/add-product`, data);
+      alert("Product Added Successfully");
     }
-
     navigate("/?admin=true");
   };
 
@@ -117,10 +118,7 @@ function AdminDashboard() {
   return (
     <div className="dashboard-page">
       {!id && (
-        <button
-          className="edit-items"
-          onClick={() => navigate("/?admin=true")}
-        >
+        <button className="edit-items" onClick={() => navigate("/?admin=true")}>
           Edit Items
         </button>
       )}

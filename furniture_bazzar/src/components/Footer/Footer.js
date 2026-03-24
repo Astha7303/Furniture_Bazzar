@@ -1,7 +1,10 @@
 import "./Footer.css";
 import logo from "../../images/logo.png";
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+  const navigate = useNavigate();
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -13,17 +16,17 @@ function Footer() {
         {/* links */}
         <div className="footer-col">
           <h3>Quick Links</h3>
-          <p>Home</p>
-          <p>About Us</p>
-          <p>Contact Us</p>
+          <p onClick={() => navigate("/")}>Home</p>
+          <p onClick={() => navigate("/about")}>About Us</p>
+          <p onClick={() => navigate("/contact")}>Contact Us</p>
           <p>Investors</p>
-          <p>Brochure</p>
+          <p onClick={() => navigate("/broucher")}>Brochure</p>
         </div>
 
         {/* useful */}
         <div className="footer-col">
           <h3>Useful Links</h3>
-          <p>Our Products</p>
+          <p onClick={() => navigate("/ourproducts")}>Our Products</p>
           <p>Privacy Policy</p>
           <p>Terms & Condition</p>
           <p>Return & Refund</p>

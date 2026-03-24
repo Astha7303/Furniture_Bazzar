@@ -226,10 +226,9 @@ function ChairsPage() {
 
   const confirmDelete = async () => {
     await axios.delete(`${API_BASE}/api/product/${deleteId}`);
-
     setChairs((prev) => prev.filter((item) => item.id !== deleteId));
-
     setOpenDeleteModal(false);
+      alert("Product Deleted Successfully")
   };
 
   /* render cards */

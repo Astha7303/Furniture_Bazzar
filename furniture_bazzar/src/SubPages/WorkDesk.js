@@ -7,7 +7,7 @@ import DeleteConfirmModal from "../Modals/DeleteConfirmModal";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
-function TemplesPage() {
+function WorkDeskPage() {
   const API_BASE = "http://localhost:5000";
 
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ function TemplesPage() {
 
   useEffect(() => {
     axios
-      .get(`${API_BASE}/api/category/Temples`)
+      .get(`${API_BASE}/api/category/WorkDesks`)
       .then((res) => setChairs(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -155,7 +155,7 @@ function TemplesPage() {
       {/* heading */}
 
       <div className="section-header">
-        <h2>Temples Collection</h2>
+        <h2>Work Desks Collection</h2>
       </div>
 
       {/* cards */}
@@ -181,4 +181,4 @@ function TemplesPage() {
   );
 }
 
-export default TemplesPage;
+export default WorkDeskPage;

@@ -54,10 +54,10 @@ function Home() {
   const confirmDelete = async () => {
     try {
       await axios.delete(`${API_BASE}/api/product/${deleteId}`);
-
       setChairs((prev) => prev.filter((item) => item.id !== deleteId));
-
       setOpenDeleteModal(false);
+      alert("Product Deleted Successfully")
+      getdata()
     } catch (err) {
       console.log(err);
     }
