@@ -14,6 +14,7 @@
 .room-hero h1 {
     font-size: 34px;
     margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .room-hero p {

@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Home from "./pages/Home/Home";
-import Contact from "./pages/ContactUs/Contact";
 import About from "./pages/AboutUs/About";
 import BookNow from "./pages/BookNow";
 import "./App.css";
@@ -39,16 +38,21 @@ import TvCabinetsPage from "./SubPages/TvCabinets";
 import DisplayCabinetsPage from "./SubPages/DisplayCabinets";
 import OfficeFurniture from "./Interiors/Office/OfficeFurniture";
 import StudyroomFurniture from "./Interiors/Studyroom/StudyroomFurniture";
+import ContactUs from "./pages/ContactUs/ContactUs";
+import HospitalFurniture from "./Interiors/Hospital/HospitalFurniture";
+import EquipmentCupboardsPage from "./SubPages/EquipmentCupboard";
+import SubHeader from "./components/SubHeader/SubHeader";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
+      <SubHeader/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/book" element={<BookNow />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/aboutus" element={<About />} />
+        <Route path="/booknow" element={<BookNow />} />
         <Route path="/broucher" element={<Broucher />} />
         <Route path="/ourproducts" element={<OurProducts />} />
         <Route path="/admin" element={<AdminLogin />} />
@@ -85,6 +89,7 @@ function App() {
         <Route path="/rockingchairs" element={<RockingChairsPage />} />
         <Route path="/tvcabinets" element={<TvCabinetsPage />} />
         <Route path="/displaycabinet" element={<DisplayCabinetsPage />} />
+        <Route path="/hospitalfurnish" element={<EquipmentCupboardsPage />} />
 
         <Route path="/bedroomfurniture" element={<BedroomFurniture />} />
         <Route path="/kitchenfurniture" element={<KitchenFurniture />} />
@@ -92,6 +97,7 @@ function App() {
         <Route path="/livingroomfurniture" element={<LivingroomFurniture />} />
         <Route path="/officefurniture" element={<OfficeFurniture />} />
         <Route path="/studyroomfurniture" element={<StudyroomFurniture />} />
+        <Route path="/hospitalfurniture" element={<HospitalFurniture />} />
       </Routes>
 
       <Footer />

@@ -88,21 +88,13 @@ function AdminDashboard() {
 
     setFormData({
       category: data.category,
-
       name: data.name,
-
       description: data.description,
-
       price: data.price,
-
       offer: data.offerPrice ? "yes" : "no",
-
       offerPrice: data.offerPrice || "",
-
       colorOption: data.colorOptions ? "yes" : "no",
-
       colors: data.colors || [],
-
       image: null,
     });
 
@@ -135,16 +127,31 @@ function AdminDashboard() {
             <option value="">Select Category</option>
 
             <option>Chairs</option>
-
             <option>Sofas</option>
-
-            <option>Beds</option>
-
             <option>CupBoards</option>
-
+            <option>Beds</option>
             <option>Tables</option>
-
             <option>Temples</option>
+
+            <option>Side Table</option>
+            <option>Dressing Table</option>
+            <option>Coffee Table</option>
+            <option>Book Shelf</option>
+            <option>Work Desk</option>
+            <option>Balcony Chair</option>
+            <option>Mattress</option>
+            <option>Dining Table</option>
+            <option>Kitchen Cabinet</option>
+            <option>High Chair</option>
+            <option>Side Board</option>
+            <option>Single Study Chair</option>
+            <option>Study Cabinet</option>
+            <option>Rocking Chair</option>
+            <option>Tv Cabinet</option>
+            <option>Display Cabinet</option>
+
+            <option>Hospital Furniture</option>
+            
           </select>
 
           <input

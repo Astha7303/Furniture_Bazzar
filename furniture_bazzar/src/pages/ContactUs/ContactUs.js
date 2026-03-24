@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Contact.css";
+import "./Contactus.css";
 
 function ContactUs() {
   const [formData, setFormData] = useState({
@@ -15,17 +15,47 @@ function ContactUs() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    alert("Message sent!");
+    try {
+      const res = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Message sent successfully");
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        alert("Failed to send message");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Error sending message");
+    }
   };
+
+  // send message to whatsapp
+  //   const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   const text = `Name: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
+
+  //   window.open(
+  //     `https://wa.me/919328219976?text=${text}`,
+  //     "_blank"
+  //   );
+  // };
 
   return (
     <div className="contact-page">

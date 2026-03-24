@@ -1,0 +1,35 @@
+.subheader {
+    display: flex;
+    gap: 40px;
+    padding: 12px 40px;
+    background: #fff;
+    justify-content: center;
+}
+
+.menu-wrapper {
+    position: relative;
+}
+
+.menu-item {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.dropdown {
+    position: absolute;
+    top: 35px;
+    left: -57px;
+    background: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.dropdown p {
+    cursor: pointer;
+}
+
+.dropdown p:hover {
+    color: #007bff;
+}

@@ -33,9 +33,9 @@ function Header() {
         {/* Menu */}
         <nav className={`menu ${menuOpen ? "show" : ""}`}>
           <button onClick={() => handleNavigate("/")}>Home</button>
-          <button onClick={() => handleNavigate("/about")}>About Us</button>
-          <button onClick={() => handleNavigate("/contact")}>Contact Us</button>
-          <button onClick={() => handleNavigate("/book")}>Book Now</button>
+          <button onClick={() => handleNavigate("/aboutus")}>About Us</button>
+          <button onClick={() => handleNavigate("/contactus")}>Contact Us</button>
+          {/* <button onClick={() => handleNavigate("/booknow")}>Book Now</button> */}
         </nav>
       </div>
     </header>

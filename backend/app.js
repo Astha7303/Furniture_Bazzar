@@ -18,6 +18,9 @@ const config = {
   },
 };
 
+const contactRoute = require("./routes/contact");
+app.use("/api", contactRoute);
+
 // ✅ ONE GET API
 app.get("/api/furniture", async (req, res) => {
   try {

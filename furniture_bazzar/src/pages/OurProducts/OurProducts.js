@@ -13,6 +13,7 @@ import livingroom from "../../images/livingroom.jpg";
 import studyroom from "../../images/studyroom.webp";
 import office from "../../images/office.jpg";
 import bedroom from "../../images/bedroom.jpg";
+import hospital from "../../images/hospital.jpg";
 
 function OurProducts() {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ function OurProducts() {
       img: kitchen,
       link: "/kitchenfurniture",
     },
-    
+
     {
       name: "Library Furniture",
       img: library,
@@ -90,6 +91,11 @@ function OurProducts() {
       name: "Study Room Furniture",
       img: studyroom,
       link: "/studyroomfurniture",
+    },
+    {
+      name: "Hospital Furniture",
+      img: hospital,
+      link: "/hospitalfurniture",
     },
   ];
 
