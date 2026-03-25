@@ -1,0 +1,58 @@
+.services-page {
+    padding: 40px;
+}
+
+.service-hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.service-section {
+    margin-bottom: 50px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.service-card {
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.service-list {
+    padding-left: 20px;
+    line-height: 2;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.highlight {
+    background: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.service-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.service-cta button {
+    padding: 12px 20px;
+    cursor: pointer;
+}
+.contact-us{
+    padding: 10px;
+    background: #0f172a;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}

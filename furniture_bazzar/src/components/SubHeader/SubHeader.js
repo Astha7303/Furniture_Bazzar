@@ -1,11 +1,32 @@
 import { useState, useRef, useEffect } from "react";
 import "./SubHeader.css";
+import { useNavigate } from "react-router-dom";
 
 const menuData = {
-  products: ["Bedroom", "Living Room", "Kitchen", "Office"],
-  newArrivals: ["Latest Beds", "Modern Sofas", "Trending Chairs"],
-  deals: ["Discount Beds", "Combo Offers", "Clearance Sale"],
-  ask: ["Custom Furniture", "Bulk Order", "Material Info"],
+  products: [
+    { menu: "Bedroom", link: "/bedroomfurniture" },
+    { menu: "Living Room", link: "/livingroomfurniture" },
+    { menu: "Kitchen", link: "/kitchenfurniture" },
+    { menu: "Office", link: "/officefurniture" },
+    { menu: "Library", link: "/libraryfurniture" },
+    { menu: "Studyroom", link: "/studyroomfurniture" },
+    { menu: "Hospital", link: "/hospitalfurniture" },
+  ],
+  newArrivals: [
+    { menu: "Latest Beds", link: "/beds" },
+    { menu: "Modern Sofas", link: "/sofas" },
+    { menu: "Trending Chairs", link: "/chairs" },
+  ],
+  deals: [
+    { menu: "Discount in Beds", link: "/beds" },
+    { menu: "Combo Offers", link: "/combooffers" },
+    // { menu: "Clearance Sale", link: "/beds" },
+  ],
+  ask: [
+    // { menu: "Customised Furniture", link: "/beds" },
+    // { menu: "Bulk Order", link: "/beds" },
+    { menu: "Material Info", link: "/ourservice" },
+  ],
 };
 
 export default function SubHeader() {
@@ -37,7 +58,7 @@ export default function SubHeader() {
       setClickedMenu(menu);
     }
   };
-
+  const navigate = useNavigate();
   const renderMenu = (key, label) => {
     const isOpen = hoveredMenu === key || clickedMenu === key;
 
@@ -53,7 +74,9 @@ export default function SubHeader() {
         {isOpen && (
           <div className="dropdown">
             {menuData[key].map((item, i) => (
-              <p key={i}>{item}</p>
+              <p key={i} onClick={() => navigate(`${item.link}`)}>
+                {item.menu}
+              </p>
             ))}
           </div>
         )}

@@ -32,7 +32,7 @@ function Footer() {
           <p onClick={() => navigate("/ourproducts")}>Our Products</p>
           <p>Privacy Policy</p>
           <p>Terms & Condition</p>
-          <p>Return & Refund</p>
+          <p onClick={() => navigate("/ourservice")}>Our Serivce</p>
           <p>Cancellation Policy</p>
         </div>
 

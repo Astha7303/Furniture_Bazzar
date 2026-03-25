@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./AdminLogin/Adminlogin.css";
+import "../AdminLogin/Adminlogin.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function AdminDashboard() {
@@ -114,6 +114,12 @@ function AdminDashboard() {
           Edit Items
         </button>
       )}
+      <button
+        className="edit-items"
+        onClick={() => navigate("/admin/add-offer")}
+      >
+        Add Offer
+      </button>
 
       <div className="dashboard-card">
         <h2>{id ? "Edit Product" : "Add Product"}</h2>
@@ -133,25 +139,24 @@ function AdminDashboard() {
             <option>Tables</option>
             <option>Temples</option>
 
-            <option>Side Table</option>
-            <option>Dressing Table</option>
-            <option>Coffee Table</option>
-            <option>Book Shelf</option>
-            <option>Work Desk</option>
-            <option>Balcony Chair</option>
+            <option>SideTables</option>
+            <option>DressingTables</option>
+            <option>CoffeeTables</option>
+            <option>BookShelfs</option>
+            <option>WorkDesks</option>
+            <option>BalconyChairs</option>
             <option>Mattress</option>
-            <option>Dining Table</option>
-            <option>Kitchen Cabinet</option>
-            <option>High Chair</option>
-            <option>Side Board</option>
-            <option>Single Study Chair</option>
-            <option>Study Cabinet</option>
-            <option>Rocking Chair</option>
-            <option>Tv Cabinet</option>
-            <option>Display Cabinet</option>
+            <option>DiningTables</option>
+            <option>KitchenCabinets</option>
+            <option>HighChairs</option>
+            <option>KitchenSideBoards</option>
+            <option>SingleStudyChairs</option>
+            <option>StudyCabinets</option>
+            <option>RockingChairs</option>
+            <option>TvCabinets</option>
+            <option>DisplayCabinets</option>
 
-            <option>Hospital Furniture</option>
-            
+            <option>EquipmentCupboards</option>
           </select>
 
           <input
@@ -176,9 +181,9 @@ function AdminDashboard() {
           />
 
           <select name="offer" value={formData.offer} onChange={handleChange}>
-            <option value="no">Offer No</option>
+            <option value="no">No</option>
 
-            <option value="yes">Offer Yes</option>
+            <option value="yes">Yes</option>
           </select>
 
           {formData.offer === "yes" && (
@@ -195,9 +200,8 @@ function AdminDashboard() {
             value={formData.colorOption}
             onChange={handleChange}
           >
-            <option value="no">Color No</option>
-
-            <option value="yes">Color Yes</option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
           </select>
 
           {formData.colorOption === "yes" && (

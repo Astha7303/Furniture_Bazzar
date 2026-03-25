@@ -21,7 +21,7 @@ const config = {
 const contactRoute = require("./routes/contact");
 app.use("/api", contactRoute);
 
-// ✅ ONE GET API
+//  main GET API
 app.get("/api/furniture", async (req, res) => {
   try {
     const pool = await sql.connect(config);
@@ -75,6 +75,7 @@ app.get("/api/furniture", async (req, res) => {
   }
 });
 
+//when admin is editing
 app.get("/api/product/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -118,7 +119,6 @@ app.get("/api/product/:id", async (req, res) => {
 });
 
 // POST /api/add-product
-
 const multer = require("multer");
 
 const storage = multer.diskStorage({
@@ -351,6 +351,119 @@ app.get("/api/category/:category", async (req, res) => {
     });
 
     res.json(formatted);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+//offer - form submit - post
+app.post(
+  "/api/add-offer",
+  upload.fields([
+    { name: "product1Image", maxCount: 1 },
+    { name: "product2Image", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    try {
+      const {
+        offerType,
+
+        product1Category,
+        product1Name,
+        product1Description,
+        product1Price,
+
+        product2Category,
+        product2Name,
+        product2Description,
+        product2Price,
+
+        comboPrice,
+        discountPercent,
+      } = req.body;
+
+      const product1Image = req.files["product1Image"]
+        ? `http://localhost:5000/uploads/${req.files["product1Image"][0].filename}`
+        : null;
+
+      const product2Image = req.files["product2Image"]
+        ? `http://localhost:5000/uploads/${req.files["product2Image"][0].filename}`
+        : null;
+
+      const pool = await sql.connect(config);
+
+      await pool
+        .request()
+
+        .input("offerType", offerType)
+
+        .input("product1Category", product1Category)
+        .input("product1Name", product1Name)
+        .input("product1Description", product1Description)
+        .input("product1Price", product1Price)
+        .input("product1Image", product1Image)
+
+        .input("product2Category", product2Category)
+        .input("product2Name", product2Name)
+        .input("product2Description", product2Description)
+        .input("product2Price", product2Price)
+        .input("product2Image", product2Image)
+
+        .input("comboPrice", comboPrice)
+        .input("discountPercent", discountPercent).query(`
+        INSERT INTO Offers (
+          offerType,
+
+          product1Category,
+          product1Name,
+          product1Description,
+          product1Price,
+          product1Image,
+
+          product2Category,
+          product2Name,
+          product2Description,
+          product2Price,
+          product2Image,
+
+          comboPrice,
+          discountPercent
+        )
+
+        VALUES (
+          @offerType,
+
+          @product1Category,
+          @product1Name,
+          @product1Description,
+          @product1Price,
+          @product1Image,
+
+          @product2Category,
+          @product2Name,
+          @product2Description,
+          @product2Price,
+          @product2Image,
+
+          @comboPrice,
+          @discountPercent
+        )
+      `);
+
+      res.send("Offer added");
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err.message);
+    }
+  },
+);
+
+//get offer - getapi
+app.get("/api/offers", async (req, res) => {
+  try {
+    const pool = await sql.connect(config);
+    const result = await pool.request().query(`SELECT * FROM Offers`);
+    res.json(result.recordset);
   } catch (err) {
     res.status(500).send(err.message);
   }

@@ -6,7 +6,7 @@ import About from "./pages/AboutUs/About";
 import BookNow from "./pages/BookNow";
 import "./App.css";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
-import AdminDashboard from "./pages/AdminDashboard";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ChairsPage from "./SubPages/Chairs";
 import SofasPage from "./SubPages/Sofas";
@@ -42,6 +42,9 @@ import ContactUs from "./pages/ContactUs/ContactUs";
 import HospitalFurniture from "./Interiors/Hospital/HospitalFurniture";
 import EquipmentCupboardsPage from "./SubPages/EquipmentCupboard";
 import SubHeader from "./components/SubHeader/SubHeader";
+import OurService from "./pages/Ourservice.js/OurService";
+import ComboOffers from "./pages/ComboOffers/ComboOffers";
+import AddOffer from "./pages/Admin/AddOffer";
 
 function App() {
   return (
@@ -55,12 +58,21 @@ function App() {
         <Route path="/booknow" element={<BookNow />} />
         <Route path="/broucher" element={<Broucher />} />
         <Route path="/ourproducts" element={<OurProducts />} />
+        <Route path="/ourservice" element={<OurService />} />
         <Route path="/admin" element={<AdminLogin />} />
         <Route
           path="/admin/dashboard"
           element={
             <ProtectedRoute>
               <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/add-offer"
+          element={
+            <ProtectedRoute>
+              <AddOffer />
             </ProtectedRoute>
           }
         />
@@ -72,6 +84,7 @@ function App() {
         <Route path="/beds" element={<BedsPage />} />
         <Route path="/tables" element={<TablesPage />} />
         <Route path="/temples" element={<TemplesPage />} />
+        <Route path="/combooffers" element={<ComboOffers />} />
 
         <Route path="/sidetables" element={<SideTablePage />} />
         <Route path="/dressingtables" element={<DressingTablesPage />} />
