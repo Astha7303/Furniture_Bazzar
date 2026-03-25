@@ -17,6 +17,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .combo-card {
@@ -69,4 +71,26 @@
     background: black;
     color: white;
     border-radius: 6px;
+}
+
+@media (max-width:600px) {
+    .combo-page {
+        padding: 20px;
+    }
+
+    .combo-card {
+        padding: 10px;
+    }
+
+    .combo-page h1 {
+        text-align: center;
+    }
+
+    .combo-grid {
+        grid-template-columns: none;
+    }
+
+    .item img {
+        max-width: 300px;
+    }
 }

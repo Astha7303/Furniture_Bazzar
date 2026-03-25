@@ -142,4 +142,8 @@
     .login-card {
         margin: auto 20px;
     }
+
+    .dashboard-page {
+        margin: 0 auto;
+    }
 }

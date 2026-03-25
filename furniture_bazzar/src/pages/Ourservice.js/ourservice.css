@@ -49,10 +49,18 @@
     padding: 12px 20px;
     cursor: pointer;
 }
-.contact-us{
+
+.contact-us {
     padding: 10px;
     background: #0f172a;
     color: white;
     border-radius: 10px;
     border: none;
+}
+
+@media (max-width:600px) {
+
+    .service-grid {
+        grid-template-columns: none;
+    }
 }
