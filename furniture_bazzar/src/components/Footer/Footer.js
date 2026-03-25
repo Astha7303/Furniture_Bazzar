@@ -23,17 +23,15 @@ function Footer() {
           <p onClick={() => navigate("/aboutus")}>About Us</p>
           <p onClick={() => navigate("/contactus")}>Contact Us</p>
           <p>Investors</p>
-          <p onClick={() => navigate("/broucher")}>Brochure</p>
         </div>
 
         {/* useful */}
         <div className="footer-col">
           <h3>Useful Links</h3>
           <p onClick={() => navigate("/ourproducts")}>Our Products</p>
-          <p>Privacy Policy</p>
-          <p>Terms & Condition</p>
           <p onClick={() => navigate("/ourservice")}>Our Serivce</p>
-          <p>Cancellation Policy</p>
+          <p onClick={() => navigate("/broucher")}>Brochure</p>
+          <p onClick={() => navigate("/privacypolicy")}>Privacy Policy</p>
         </div>
 
         {/* contact */}

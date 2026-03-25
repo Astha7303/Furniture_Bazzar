@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./ComboOffers.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ComboOffers() {
   const [offers, setOffers] = useState([]);
@@ -13,10 +14,20 @@ export default function ComboOffers() {
       });
   }, []);
 
+  const navigate = useNavigate();
+  const isAdmin = localStorage.getItem("isAdmin");
+
   return (
     <div className="combo-page">
       <h1>Combo Offers</h1>
-
+      {isAdmin && (
+        <button
+          className="edit-items"
+          onClick={() => navigate("/admin/add-offer")}
+        >
+          Want to Add Offer ?
+        </button>
+      )}
       <div className="combo-grid">
         {offers.map((offer) => (
           <div key={offer.id} className="combo-card">

@@ -2,8 +2,12 @@
     display: flex;
     gap: 40px;
     padding: 12px 40px;
-    background: #fff;
+    background: #e4e1e1;
     justify-content: center;
+    position: sticky;
+    top: 72px;
+    z-index: 1000;
+    border-bottom: 1px solid #ccc4c4;
 }
 
 .menu-wrapper {

@@ -20,12 +20,10 @@ const menuData = {
   deals: [
     { menu: "Discount in Beds", link: "/beds" },
     { menu: "Combo Offers", link: "/combooffers" },
-    // { menu: "Clearance Sale", link: "/beds" },
   ],
   ask: [
-    // { menu: "Customised Furniture", link: "/beds" },
-    // { menu: "Bulk Order", link: "/beds" },
-    { menu: "Material Info", link: "/ourservice" },
+    { menu: "Customised Furniture", link: "/customisedfurniture" },
+    { menu: "Our service", link: "/ourservice" },
   ],
 };
 
@@ -86,12 +84,9 @@ export default function SubHeader() {
 
   return (
     <div className="subheader" ref={wrapperRef}>
-      {renderMenu("products", "Our Products")}
-
+      {renderMenu("products", "Product Category")}
       {renderMenu("newArrivals", "New Arrivals")}
-
       {renderMenu("deals", "Deal Zone")}
-
       {renderMenu("ask", "Ask Anything")}
     </div>
   );

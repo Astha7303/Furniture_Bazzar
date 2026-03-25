@@ -1,0 +1,27 @@
+.policy-page {
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+.policy-page h1 {
+    margin-bottom: 10px;
+}
+
+.last-updated {
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.policy-page section {
+    margin-bottom: 30px;
+}
+
+.policy-page ul {
+    padding-left: 20px;
+}
+
+.policy-page h2 {
+    margin-bottom: 10px;
+}

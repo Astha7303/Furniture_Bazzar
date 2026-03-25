@@ -1,0 +1,53 @@
+.custom-page {
+    padding: 20px 40px;
+}
+
+.custom-hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.custom-section {
+    margin-bottom: 50px;
+}
+
+.custom-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.custom-card {
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 8px;
+    background: white;
+}
+
+.custom-list {
+    padding-left: 20px;
+    line-height: 2;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.custom-cta {
+    text-align: center;
+    background: #f8f8f8;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.custom-cta button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}

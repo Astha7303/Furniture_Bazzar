@@ -45,12 +45,16 @@ import SubHeader from "./components/SubHeader/SubHeader";
 import OurService from "./pages/Ourservice.js/OurService";
 import ComboOffers from "./pages/ComboOffers/ComboOffers";
 import AddOffer from "./pages/Admin/AddOffer";
+import CustomisedFurniture from "./pages/CustomisedFurniture/CustomisedFurniture";
+import ScrollToTop from "./components/ScrollToTop";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Header />
-      <SubHeader/>
+      <SubHeader />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contactus" element={<ContactUs />} />
@@ -59,7 +63,9 @@ function App() {
         <Route path="/broucher" element={<Broucher />} />
         <Route path="/ourproducts" element={<OurProducts />} />
         <Route path="/ourservice" element={<OurService />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/customisedfurniture" element={<CustomisedFurniture />} />
         <Route
           path="/admin/dashboard"
           element={

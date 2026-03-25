@@ -5,7 +5,8 @@
     background: #bac6e0;
     padding: 20px 0;
 }
-.edit-items{
+
+.edit-items {
     background: #0f172a;
     color: #fff;
     border-radius: 10px;
@@ -14,6 +15,7 @@
     margin: 10px;
     cursor: pointer;
 }
+
 .login-card {
     width: 400px;
     padding: 35px;

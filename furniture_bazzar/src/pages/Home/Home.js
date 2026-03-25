@@ -4,6 +4,7 @@ import "./Home.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import ProductDetailsModal from "../../Modals/ProductDetailsModal";
 import DeleteConfirmModal from "../../Modals/DeleteConfirmModal";
+import Loader from "../../components/Loader/Loader";
 
 function Home() {
   const location = useLocation();
@@ -31,9 +32,12 @@ function Home() {
   const [deleteId, setDeleteId] = useState(null);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
+  const [loading, setLoading] = useState(true);
+
   const getdata = async () => {
     try {
       const res = await axios.get(`${API_BASE}/api/furniture`);
+      setLoading(true);
       const data = res.data;
 
       setChairs(data.Chairs || []);
@@ -42,6 +46,7 @@ function Home() {
       setSofa(data.Sofas || []);
       setTemples(data.Temples || []);
       setTables(data.Tables || []);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -56,8 +61,8 @@ function Home() {
       await axios.delete(`${API_BASE}/api/product/${deleteId}`);
       setChairs((prev) => prev.filter((item) => item.id !== deleteId));
       setOpenDeleteModal(false);
-      alert("Product Deleted Successfully")
-      getdata()
+      alert("Product Deleted Successfully");
+      getdata();
     } catch (err) {
       console.log(err);
     }
@@ -144,6 +149,10 @@ function Home() {
       </div>
     ));
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
