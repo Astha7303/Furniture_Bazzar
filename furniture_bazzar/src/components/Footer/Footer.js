@@ -42,15 +42,15 @@ function Footer() {
           <p>Phone: +91 93282 19976</p>
 
           <div className="social-icons">
-            <a href="#">
+            <a href="/">
               <img src={facebook} alt="facebook-icon" width={20} />
             </a>
 
-            <a href="#">
+            <a href="/">
               <img src={instagram} alt="instagram-icon" width={20} />
             </a>
 
-            <a href="#">
+            <a href="/">
               <img src={youtube} alt="youtube-icon" width={20} />
             </a>
           </div>

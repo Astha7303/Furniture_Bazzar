@@ -6,10 +6,9 @@ import ProductDetailsModal from "../Modals/ProductDetailsModal";
 import DeleteConfirmModal from "../Modals/DeleteConfirmModal";
 
 import { useLocation, useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 function StudyCabinetsPage() {
-  const API_BASE = "http://localhost:5000";
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,7 +33,7 @@ function StudyCabinetsPage() {
 
   useEffect(() => {
     axios
-      .get(`${API_BASE}/api/category/StudyCabinets`)
+      .get(`${API_URL}/api/category/StudyCabinets`)
       .then((res) => setChairs(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -56,7 +55,7 @@ function StudyCabinetsPage() {
   /* delete */
 
   const confirmDelete = async () => {
-    await axios.delete(`${API_BASE}/api/product/${deleteId}`);
+    await axios.delete(`${API_URL}/api/product/${deleteId}`);
     setChairs((prev) => prev.filter((item) => item.id !== deleteId));
     setOpenDeleteModal(false);
     alert("Product Deleted Successfully");

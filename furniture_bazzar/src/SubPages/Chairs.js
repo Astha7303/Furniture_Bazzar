@@ -1,172 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import "./chairs.css";
-
-// export default function ChairsPage() {
-//   const [chairs, setChairs] = useState([]);
-//   const [selectedProduct, setSelectedProduct] = useState(null);
-
-//   useEffect(() => {
-//     axios
-//       .get("http://localhost:5000/api/category/Chairs")
-//       .then((res) => setChairs(res.data))
-//       .catch((err) => console.log(err));
-//   }, []);
-
-//   return (
-//     <div className="chairs-page">
-//       <h1 className="page-title">Chairs Collection</h1>
-
-//       {/* grid */}
-
-//       <div className="chairs-grid">
-//         {chairs.map((chair) => (
-//           <div
-//             key={chair.id}
-//             className="chair-card"
-//             onClick={() => setSelectedProduct(chair)}
-//           >
-//             <img src={chair.image} alt={chair.name} className="chair-image" />
-
-//             <div className="chair-info">
-//               <h3>{chair.name}</h3>
-
-//               <div className="price-row">
-//                 {chair.offerPrice ? (
-//                   <>
-//                     <span className="old-price">₹{chair.price}</span>
-
-//                     <span className="offer-price">₹{chair.offerPrice}</span>
-//                   </>
-//                 ) : (
-//                   <span className="price">₹{chair.price}</span>
-//                 )}
-//               </div>
-
-//               {/* colors */}
-
-//               {chair.colors?.length > 0 && (
-//                 <div className="colors">
-//                   {chair.colors.map((color, i) => (
-//                     <span
-//                       key={i}
-//                       className="color"
-//                       style={{
-//                         background: color,
-//                       }}
-//                     />
-//                   ))}
-//                 </div>
-//               )}
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-
-//       {/* modal */}
-
-//       {selectedProduct && (
-//         <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
-//           <div
-//             className="modal large-modal"
-//             onClick={(e) => e.stopPropagation()}
-//           >
-//             <button
-//               className="close-btn"
-//               onClick={() => setSelectedProduct(null)}
-//             >
-//               ✕
-//             </button>
-
-//             <div className="product-modal-grid">
-//               {/* image */}
-
-//               <img src={selectedProduct.image} alt="" className="modal-image" />
-
-//               {/* details */}
-
-//               <div>
-//                 <h2>{selectedProduct.name}</h2>
-
-//                 <p className="modal-desc">{selectedProduct.description}</p>
-
-//                 {/* price */}
-
-//                 <div className="modal-price">
-//                   {selectedProduct.offerPrice ? (
-//                     <>
-//                       <span className="old-price">
-//                         ₹{selectedProduct.price}
-//                       </span>
-
-//                       <span className="offer-price big">
-//                         ₹{selectedProduct.offerPrice}
-//                       </span>
-//                     </>
-//                   ) : (
-//                     <span className="price big">₹{selectedProduct.price}</span>
-//                   )}
-//                 </div>
-
-//                 {/* highlights */}
-
-//                 <h3>Product Highlights</h3>
-
-//                 <ul className="highlight-list">
-//                   <li>
-//                     Weight :{selectedProduct.productHighlights?.weight || "-"}
-//                   </li>
-
-//                   <li>
-//                     Length :{selectedProduct.productHighlights?.length || "-"}
-//                   </li>
-
-//                   <li>
-//                     Height :{selectedProduct.productHighlights?.height || "-"}
-//                   </li>
-
-//                   <li>
-//                     Warranty :
-//                     {selectedProduct.productHighlights?.warrantyInMonths}
-//                     months
-//                   </li>
-
-//                   <li>
-//                     Material :
-//                     {selectedProduct.productHighlights?.materialTypes?.join(
-//                       ", ",
-//                     ) || "-"}
-//                   </li>
-//                 </ul>
-
-//                 {/* colors */}
-
-//                 {selectedProduct.colors?.length > 0 && (
-//                   <>
-//                     <h3>Available Colors</h3>
-
-//                     <div className="colors">
-//                       {selectedProduct.colors.map((color, i) => (
-//                         <span
-//                           key={i}
-//                           className="color big"
-//                           style={{
-//                             background: color,
-//                           }}
-//                         />
-//                       ))}
-//                     </div>
-//                   </>
-//                 )}
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../pages/Home/Home.css";
@@ -175,10 +6,9 @@ import ProductDetailsModal from "../Modals/ProductDetailsModal";
 import DeleteConfirmModal from "../Modals/DeleteConfirmModal";
 
 import { useLocation, useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 function ChairsPage() {
-  const API_BASE = "http://localhost:5000";
-
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -203,7 +33,7 @@ function ChairsPage() {
 
   useEffect(() => {
     axios
-      .get(`${API_BASE}/api/category/Chairs`)
+      .get(`${API_URL}/api/category/Chairs`)
       .then((res) => setChairs(res.data))
       .catch((err) => console.log(err));
   }, []);
@@ -225,7 +55,7 @@ function ChairsPage() {
   /* delete */
 
   const confirmDelete = async () => {
-    await axios.delete(`${API_BASE}/api/product/${deleteId}`);
+    await axios.delete(`${API_URL}/api/product/${deleteId}`);
     setChairs((prev) => prev.filter((item) => item.id !== deleteId));
     setOpenDeleteModal(false);
       alert("Product Deleted Successfully")

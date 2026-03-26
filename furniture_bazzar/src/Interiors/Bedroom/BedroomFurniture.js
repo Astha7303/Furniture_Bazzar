@@ -2,7 +2,6 @@ import "../RoomFurniture.css";
 import { useNavigate } from "react-router-dom";
 import bed from "../../images/bed.jpg";
 import cupboard from "../../images/cupboard.jpg";
-import table from "../../images/table.jpg";
 import chair from "../../images/chair.webp";
 import sofa from "../../images/sofa.webp";
 import sidetable from "../../images/side-table.jpg";

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../AdminLogin/Adminlogin.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import { API_URL } from "../../config";
 
 function AdminDashboard() {
-  const API_BASE = "http://localhost:5000";
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -72,17 +72,17 @@ function AdminDashboard() {
     });
 
     if (id) {
-      await axios.put(`${API_BASE}/api/product/${id}`, data);
+      await axios.put(`${API_URL}/api/product/${id}`, data);
       alert("Product Updated Successfully");
     } else {
-      await axios.post(`${API_BASE}/api/add-product`, data);
+      await axios.post(`${API_URL}/api/add-product`, data);
       alert("Product Added Successfully");
     }
     navigate("/?admin=true");
   };
 
   const fetchProduct = async () => {
-    const res = await axios.get(`${API_BASE}/api/product/${id}`);
+    const res = await axios.get(`${API_URL}/api/product/${id}`);
 
     const data = res.data;
 

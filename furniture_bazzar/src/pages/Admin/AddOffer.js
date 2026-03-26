@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./AddOffer.css";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../../config";
 
 const categories = [
   "Chairs",
@@ -44,7 +45,7 @@ export default function AddOffer() {
 
     data.append("offerType", offerType);
 
-    await axios.post("http://localhost:5000/api/add-offer", data);
+    await axios.post(`${API_URL}/api/add-offer`, data);
 
     alert("Offer Added Successfully");
     navigate("/combooffers");

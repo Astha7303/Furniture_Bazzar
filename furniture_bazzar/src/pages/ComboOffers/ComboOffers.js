@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import "./ComboOffers.css";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../../config";
 
 export default function ComboOffers() {
   const [offers, setOffers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/offers")
+    fetch(`${API_URL}/api/offers`)
       .then((res) => res.json())
 
       .then((data) => {
@@ -37,7 +38,7 @@ export default function ComboOffers() {
 
             <div className="combo-items">
               <div className="item">
-                <img src={offer.product1Image} />
+                <img src={offer.product1Image} alt={offer.product1Name}/>
 
                 <p>Product : {offer.product1Name}</p>
 

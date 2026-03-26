@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ProductDetailsModal from "../../Modals/ProductDetailsModal";
 import DeleteConfirmModal from "../../Modals/DeleteConfirmModal";
 import Loader from "../../components/Loader/Loader";
+import { API_URL } from "../../config";
 
 function Home() {
   const location = useLocation();
@@ -16,8 +17,6 @@ function Home() {
   const isAdmin = localStorage.getItem("isAdmin") === "true";
 
   const isAdminView = isAdmin && queryAdmin;
-
-  const API_BASE = "http://localhost:5000";
 
   const [chairs, setChairs] = useState([]);
   const [bed, setBed] = useState([]);
@@ -36,7 +35,7 @@ function Home() {
 
   const getdata = async () => {
     try {
-      const res = await axios.get(`${API_BASE}/api/furniture`);
+      const res = await axios.get(`${API_URL}/api/furniture`);
       setLoading(true);
       const data = res.data;
 
@@ -58,7 +57,7 @@ function Home() {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`${API_BASE}/api/product/${deleteId}`);
+      await axios.delete(`${API_URL}/api/product/${deleteId}`);
       setChairs((prev) => prev.filter((item) => item.id !== deleteId));
       setOpenDeleteModal(false);
       alert("Product Deleted Successfully");
